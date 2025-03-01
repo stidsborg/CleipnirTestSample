@@ -12,7 +12,7 @@ public class MessageDrivenOrderFlowTests
     public async Task CaptureFundsCommandHasSameTransactionIdAsReserveFundsCommand()
     {
         var (orderFlows, bus, disposable) = CreateOrderFlows();
-        using (var _ = disposable) ;
+        using var _ = disposable; 
 
         var order = new Order("SomeOrderId", CustomerId: Guid.NewGuid(), ProductIds: [Guid.NewGuid()], TotalPrice: 120.5M);
         await orderFlows.Schedule(
